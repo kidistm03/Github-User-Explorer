@@ -1,19 +1,14 @@
 import useGitHubUser from './hooks/useGitHubUser'
+import SearchBar from './components/SearchBar'
 
 function App() {
   const { user, loading, error, searchUser } = useGitHubUser()
-
-  const handleSearch = (): void => {
-    searchUser('octocat')
-  }
 
   return (
     <div>
       <h1>GitHub User Explorer</h1>
 
-      <button onClick={handleSearch}>
-        Search Octocat
-      </button>
+      <SearchBar onSearch={searchUser} />
 
       {loading && <p>Loading...</p>}
 
