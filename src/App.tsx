@@ -1,5 +1,6 @@
 import useGitHubUser from './hooks/useGitHubUser'
 import SearchBar from './components/SearchBar'
+import UserCard from './components/UserCard'
 
 function App() {
   const { user, loading, error, searchUser } = useGitHubUser()
@@ -14,27 +15,7 @@ function App() {
 
       {error && <p>{error}</p>}
 
-      {user && (
-        <div>
-          <img
-            src={user.avatar_url}
-            alt={user.login}
-            width="150"
-          />
-
-          <h2>{user.name}</h2>
-
-          <p>Username: {user.login}</p>
-
-          <p>Bio: {user.bio}</p>
-
-          <p>Followers: {user.followers}</p>
-
-          <p>Following: {user.following}</p>
-
-          <p>Public repositories: {user.public_repos}</p>
-        </div>
-      )}
+      {user && <UserCard user={user} />}
     </div>
   )
 }
