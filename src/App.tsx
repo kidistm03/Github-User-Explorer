@@ -5,9 +5,13 @@ import SearchBar from './components/SearchBar'
 import UserCard from './components/UserCard'
 import RepoList from './components/RepoList'
 import SortSelect from './components/SortSelect'
+import LanguageFilter from './components/LanguageFilter'
 
 function App() {
   const [sortBy, setSortBy] = useState<string>('stars')
+
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>('all')
 
   const {
     user,
@@ -51,6 +55,24 @@ function App() {
     return 0
   })
 
+  const languages = Array.from(
+    new Set(
+      repos
+        .map((repo) => repo.language)
+        .filter(
+          (language): language is string =>
+            language !== null
+        )
+    )
+  ).sort()
+
+  const filteredRepos =
+    selectedLanguage === 'all'
+      ? sortedRepos
+      : sortedRepos.filter(
+          (repo) => repo.language === selectedLanguage
+        )
+
   return (
     <div>
       <h1>GitHub User Explorer</h1>
@@ -74,7 +96,13 @@ function App() {
             onSortChange={setSortBy}
           />
 
-          <RepoList repos={sortedRepos} />
+          <LanguageFilter
+            languages={languages}
+            selectedLanguage={selectedLanguage}
+            onLanguageChange={setSelectedLanguage}
+          />
+
+          <RepoList repos={filteredRepos} />
         </>
       )}
     </div>
