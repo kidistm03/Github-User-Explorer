@@ -2,6 +2,8 @@ import useGitHubUser from './hooks/useGitHubUser'
 import useGitHubRepos from './hooks/useGitHubRepos'
 import SearchBar from './components/SearchBar'
 import UserCard from './components/UserCard'
+import RepoList from './components/RepoList'
+
 
 function App() {
   const {
@@ -39,7 +41,7 @@ function App() {
 
       {reposError && <p>{reposError}</p>}
 
-      <p>Repositories found: {repos.length}</p>
+      {repos.length > 0 && <RepoList repos={repos} />}
     </div>
   )
 }
