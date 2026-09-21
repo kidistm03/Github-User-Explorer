@@ -1,21 +1,45 @@
 import useGitHubUser from './hooks/useGitHubUser'
+import useGitHubRepos from './hooks/useGitHubRepos'
 import SearchBar from './components/SearchBar'
 import UserCard from './components/UserCard'
 
 function App() {
-  const { user, loading, error, searchUser } = useGitHubUser()
+  const {
+    user,
+    loading: userLoading,
+    error: userError,
+    searchUser,
+  } = useGitHubUser()
+
+  const {
+    repos,
+    loading: reposLoading,
+    error: reposError,
+    searchRepos,
+  } = useGitHubRepos()
+
+  const handleSearch = (username: string): void => {
+    searchUser(username)
+    searchRepos(username)
+  }
 
   return (
     <div>
       <h1>GitHub User Explorer</h1>
 
-      <SearchBar onSearch={searchUser} />
+      <SearchBar onSearch={handleSearch} />
 
-      {loading && <p>Loading...</p>}
+      {userLoading && <p>Loading user...</p>}
 
-      {error && <p>{error}</p>}
+      {userError && <p>{userError}</p>}
 
       {user && <UserCard user={user} />}
+
+      {reposLoading && <p>Loading repositories...</p>}
+
+      {reposError && <p>{reposError}</p>}
+
+      <p>Repositories found: {repos.length}</p>
     </div>
   )
 }
