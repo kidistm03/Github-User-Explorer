@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import useGitHubUser from './hooks/useGitHubUser'
 import useGitHubRepos from './hooks/useGitHubRepos'
 import SearchBar from './components/SearchBar'
 import UserCard from './components/UserCard'
 import RepoList from './components/RepoList'
-
+import SortSelect from './components/SortSelect'
 
 function App() {
+  const [sortBy, setSortBy] = useState<string>('stars')
+
   const {
     user,
     loading: userLoading,
@@ -25,6 +28,29 @@ function App() {
     searchRepos(username)
   }
 
+  const sortedRepos = [...repos].sort((a, b) => {
+    if (sortBy === 'stars') {
+      return b.stargazers_count - a.stargazers_count
+    }
+
+    if (sortBy === 'forks') {
+      return b.forks_count - a.forks_count
+    }
+
+    if (sortBy === 'updated') {
+      return (
+        new Date(b.updated_at).getTime() -
+        new Date(a.updated_at).getTime()
+      )
+    }
+
+    if (sortBy === 'name') {
+      return a.name.localeCompare(b.name)
+    }
+
+    return 0
+  })
+
   return (
     <div>
       <h1>GitHub User Explorer</h1>
@@ -41,7 +67,16 @@ function App() {
 
       {reposError && <p>{reposError}</p>}
 
-      {repos.length > 0 && <RepoList repos={repos} />}
+      {repos.length > 0 && (
+        <>
+          <SortSelect
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+          />
+
+          <RepoList repos={sortedRepos} />
+        </>
+      )}
     </div>
   )
 }
