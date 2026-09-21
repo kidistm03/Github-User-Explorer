@@ -6,12 +6,19 @@ import UserCard from './components/UserCard'
 import RepoList from './components/RepoList'
 import SortSelect from './components/SortSelect'
 import LanguageFilter from './components/LanguageFilter'
+import useSearchHistory from './hooks/useSearchHistory'
+import SearchHistory from './components/SearchHistory'
 
 function App() {
   const [sortBy, setSortBy] = useState<string>('stars')
 
   const [selectedLanguage, setSelectedLanguage] =
     useState<string>('all')
+  const {
+    history,
+    addSearch,
+    clearHistory,
+  } = useSearchHistory()
 
   const {
     user,
@@ -28,6 +35,7 @@ function App() {
   } = useGitHubRepos()
 
   const handleSearch = (username: string): void => {
+    addSearch(username)
     searchUser(username)
     searchRepos(username)
   }
@@ -70,14 +78,19 @@ function App() {
     selectedLanguage === 'all'
       ? sortedRepos
       : sortedRepos.filter(
-          (repo) => repo.language === selectedLanguage
-        )
+        (repo) => repo.language === selectedLanguage
+      )
 
   return (
     <div>
       <h1>GitHub User Explorer</h1>
 
       <SearchBar onSearch={handleSearch} />
+      <SearchHistory
+        history={history}
+        onSelect={handleSearch}
+        onClear={clearHistory}
+      />
 
       {userLoading && <p>Loading user...</p>}
 
