@@ -22,3 +22,10 @@ export interface GitHubRepository {
   forks_count: number
   updated_at: string
 }
+
+export interface GitHubReadme {
+  name: string
+  path: string
+  content: string
+  encoding: string
+}

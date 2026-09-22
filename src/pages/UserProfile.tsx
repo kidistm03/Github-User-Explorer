@@ -4,12 +4,8 @@ import UserCard from '../components/UserCard'
 import useGitHubUser from '../hooks/useGitHubUser'
 import NotFound from './NotFound'
 
-interface UserProfileParams {
-  username: string
-}
-
 function UserProfile() {
-  const { username } = useParams<UserProfileParams>()
+  const { username } = useParams<'username'>()
 
   const {
     user,
