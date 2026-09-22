@@ -1,13 +1,24 @@
+import { Link } from 'react-router-dom'
 import type { GitHubRepository } from '../types/github'
 
 interface RepoCardProps {
   repo: GitHubRepository
+  username: string
 }
 
-function RepoCard({ repo }: RepoCardProps) {
+function RepoCard({
+  repo,
+  username,
+}: RepoCardProps) {
   return (
     <div>
-      <h3>{repo.name}</h3>
+      <h3>
+        <Link
+          to={`/users/${username}/repos/${repo.name}`}
+        >
+          {repo.name}
+        </Link>
+      </h3>
 
       <p>
         {repo.description || 'No description available'}
@@ -17,13 +28,19 @@ function RepoCard({ repo }: RepoCardProps) {
         Language: {repo.language || 'Not specified'}
       </p>
 
-      <p>⭐ Stars: {repo.stargazers_count}</p>
+      <p>
+        ⭐ Stars: {repo.stargazers_count}
+      </p>
 
-      <p>🍴 Forks: {repo.forks_count}</p>
+      <p>
+        🍴 Forks: {repo.forks_count}
+      </p>
 
       <p>
         Updated:{' '}
-        {new Date(repo.updated_at).toLocaleDateString()}
+        {new Date(
+          repo.updated_at
+        ).toLocaleDateString()}
       </p>
 
       <a
@@ -31,7 +48,7 @@ function RepoCard({ repo }: RepoCardProps) {
         target="_blank"
         rel="noreferrer"
       >
-        View Repository
+        View Repository on GitHub
       </a>
     </div>
   )
