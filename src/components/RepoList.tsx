@@ -3,9 +3,13 @@ import RepoCard from './RepoCard'
 
 interface RepoListProps {
   repos: GitHubRepository[]
+  username: string
 }
 
-function RepoList({ repos }: RepoListProps) {
+function RepoList({
+  repos,
+  username,
+}: RepoListProps) {
   return (
     <div>
       <h2>Repositories</h2>
@@ -14,6 +18,7 @@ function RepoList({ repos }: RepoListProps) {
         <RepoCard
           key={repo.id}
           repo={repo}
+          username={username}
         />
       ))}
     </div>
