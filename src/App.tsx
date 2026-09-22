@@ -8,6 +8,7 @@ import SortSelect from './components/SortSelect'
 import LanguageFilter from './components/LanguageFilter'
 import useSearchHistory from './hooks/useSearchHistory'
 import SearchHistory from './components/SearchHistory'
+import NotFound from './pages/NotFound'
 
 function App() {
   const [sortBy, setSortBy] = useState<string>('stars')
@@ -94,7 +95,7 @@ function App() {
 
       {userLoading && <p>Loading user...</p>}
 
-      {userError && <p>{userError}</p>}
+      {userError && <NotFound />}
 
       {user && <UserCard user={user} />}
 
