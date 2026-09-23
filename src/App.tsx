@@ -6,12 +6,15 @@ import RepoDetail from './pages/RepoDetail'
 import NotFound from './pages/NotFound'
 import RateLimit from './components/RateLimit'
 import useGitHubRateLimit from './hooks/useGitHubRateLimit'
+import Navigation from './components/Navigation'
 
 function App() {
   const { rateLimit } = useGitHubRateLimit()
 
   return (
     <BrowserRouter>
+      <Navigation />
+
       {rateLimit && (
         <RateLimit rateLimit={rateLimit} />
       )}
