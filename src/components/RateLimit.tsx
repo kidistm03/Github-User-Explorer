@@ -4,19 +4,24 @@ interface RateLimitProps {
   rateLimit: GitHubRateLimit
 }
 
-function RateLimit({ rateLimit }: RateLimitProps) {
-  const isLow = rateLimit.remaining <= 10
+function RateLimit({
+  rateLimit,
+}: RateLimitProps) {
+  const isLow =
+    rateLimit.remaining <= 10
 
   return (
-    <div>
+    <div className="rate-limit">
       <p>
         API Requests Remaining:{' '}
-        {rateLimit.remaining} / {rateLimit.limit}
+        {rateLimit.remaining} /{' '}
+        {rateLimit.limit}
       </p>
 
       {isLow && (
-        <p>
-          Warning: You are close to the GitHub API rate limit.
+        <p className="rate-warning">
+          Warning: You are close to the
+          GitHub API rate limit.
         </p>
       )}
     </div>
