@@ -1,8 +1,5 @@
 import { useEffect } from 'react'
-import {
-  Link,
-  useParams,
-} from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 import useGitHubReadme from '../hooks/useGitHubReadme'
@@ -32,7 +29,16 @@ function RepoDetail() {
   }
 
   if (error) {
-    return <p>{error}</p>
+    return (
+      <div>
+        <Link to={`/users/${username}`}>
+          ← Back to Profile
+        </Link>
+
+        <h2>README Not Available</h2>
+        <p>{error}</p>
+      </div>
+    )
   }
 
   return (

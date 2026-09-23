@@ -86,6 +86,11 @@ function SearchPage() {
         <div>
             <h1>GitHub User Explorer</h1>
 
+            <p>
+                Search for a GitHub username to explore their
+                profile and repositories.
+            </p>
+
             <SearchBar onSearch={handleSearch} />
 
             <SearchHistory
