@@ -2,14 +2,22 @@ import { Link } from 'react-router-dom'
 
 function Navigation() {
   return (
-    <nav>
-      <Link to="/">
-        GitHub User Explorer
-      </Link>
+    <nav className="navigation">
+      <div className="navigation-inner">
+        <Link
+          to="/"
+          className="navigation-brand"
+        >
+          GitHub User Explorer
+        </Link>
 
-      <Link to="/">
-        Search
-      </Link>
+        <Link
+          to="/"
+          className="navigation-link"
+        >
+          Search
+        </Link>
+      </div>
     </nav>
   )
 }
