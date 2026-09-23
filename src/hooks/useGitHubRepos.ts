@@ -6,25 +6,35 @@ function useGitHubRepos() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  const searchRepos = async (username: string): Promise<void> => {
+  const searchRepos = async (
+    username: string
+  ): Promise<void> => {
     setLoading(true)
     setError(null)
+    setRepos([])
 
     try {
       const response = await fetch(
         `https://api.github.com/users/${username}/repos?per_page=100`
       )
 
-      if (!response.ok) {
-        throw new Error('Repositories not found')
+      if (response.status === 403) {
+        throw new Error(
+          'GitHub API rate limit exceeded'
+        )
       }
 
-      const data: GitHubRepository[] = await response.json()
+      if (!response.ok) {
+        throw new Error(
+          'Unable to load repositories'
+        )
+      }
+
+      const data: GitHubRepository[] =
+        await response.json()
 
       setRepos(data)
     } catch (error) {
-      setRepos([])
-
       if (error instanceof Error) {
         setError(error.message)
       } else {
