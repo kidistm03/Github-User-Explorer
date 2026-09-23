@@ -14,25 +14,31 @@ function SearchHistory({
   }
 
   return (
-    <div>
+    <div className="history">
       <h3>Recent Searches</h3>
 
-      {history.map((username) => (
-        <button
-          key={username}
-          type="button"
-          onClick={() => onSelect(username)}
-        >
-          {username}
-        </button>
-      ))}
+      <div className="history-buttons">
+        {history.map((username) => (
+          <button
+            className="history-button"
+            key={username}
+            type="button"
+            onClick={() =>
+              onSelect(username)
+            }
+          >
+            {username}
+          </button>
+        ))}
 
-      <button
-        type="button"
-        onClick={onClear}
-      >
-        Clear History
-      </button>
+        <button
+          className="clear-history"
+          type="button"
+          onClick={onClear}
+        >
+          Clear History
+        </button>
+      </div>
     </div>
   )
 }
