@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import {
+  Link,
+  useParams,
+} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
-import useGitHubReadme from '../hooks/useGitHubReadme'
 
-interface RepoDetailParams {
-  username: string
-  repoName: string
-}
+import useGitHubReadme from '../hooks/useGitHubReadme'
 
 function RepoDetail() {
   const { username, repoName } =
-    useParams<keyof RepoDetailParams>()
+    useParams<keyof {
+      username: string
+      repoName: string
+    }>()
 
   const {
     readme,
@@ -35,6 +37,10 @@ function RepoDetail() {
 
   return (
     <div>
+      <Link to={`/users/${username}`}>
+        ← Back to Profile
+      </Link>
+
       <h1>{repoName}</h1>
 
       {readme ? (
