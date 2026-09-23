@@ -10,13 +10,6 @@ function Navigation() {
         >
           GitHub User Explorer
         </Link>
-
-        <Link
-          to="/"
-          className="navigation-link"
-        >
-          Search
-        </Link>
       </div>
     </nav>
   )
