@@ -24,8 +24,6 @@ a {
   text-decoration: none;
 }
 
-/* Navigation */
-
 .navigation {
   background: #24292f;
   padding: 16px 0;
@@ -55,8 +53,6 @@ a {
   color: white;
 }
 
-/* Rate limit */
-
 .rate-limit {
   padding: 8px;
   background: #fff;
@@ -70,8 +66,6 @@ a {
   color: #d73a49;
   font-weight: bold;
 }
-
-/* Main page */
 
 .container {
   width: 90%;
@@ -91,7 +85,6 @@ a {
   color: #666;
 }
 
-/* Search */
 
 .search-section {
   margin-bottom: 25px;
@@ -130,7 +123,6 @@ a {
   background: #0757b5;
 }
 
-/* Search history */
 
 .history {
   margin-bottom: 25px;
@@ -168,7 +160,6 @@ a {
   border-radius: 6px;
 }
 
-/* User */
 
 .user-card {
   display: flex;
@@ -233,8 +224,6 @@ a {
   font-weight: bold;
 }
 
-/* Controls */
-
 .controls {
   display: flex;
   gap: 15px;
@@ -257,7 +246,6 @@ a {
   border-radius: 6px;
 }
 
-/* Repositories */
 
 .repositories-title {
   margin-bottom: 15px;
@@ -314,8 +302,6 @@ a {
   font-weight: bold;
 }
 
-/* Back link */
-
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
@@ -324,7 +310,6 @@ a {
   font-weight: bold;
 }
 
-/* README */
 
 .readme {
   padding: 25px;
@@ -369,8 +354,42 @@ a {
 .readme img {
   max-width: 100%;
 }
+.not-found {
+  max-width: 600px;
 
-/* Mobile */
+  margin: 40px auto;
+
+  padding: 40px;
+
+  background: white;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.not-found-icon {
+  margin-bottom: 15px;
+
+  color: #d73a49;
+
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.not-found h2 {
+  margin-bottom: 10px;
+
+  color: #24292f;
+}
+
+.not-found p {
+  margin-bottom: 8px;
+
+  color: #666;
+}
+
 
 @media (max-width: 700px) {
   .container {
