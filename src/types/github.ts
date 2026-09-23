@@ -29,3 +29,9 @@ export interface GitHubReadme {
   content: string
   encoding: string
 }
+
+export interface GitHubRateLimit {
+  limit: number
+  remaining: number
+  reset: number
+}
