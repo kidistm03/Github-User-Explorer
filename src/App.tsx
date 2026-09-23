@@ -1,17 +1,21 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom'
+import {BrowserRouter,Routes,Route,} from 'react-router-dom'
 
 import SearchPage from './pages/SearchPage'
 import UserProfile from './pages/UserProfile'
 import RepoDetail from './pages/RepoDetail'
 import NotFound from './pages/NotFound'
+import RateLimit from './components/RateLimit'
+import useGitHubRateLimit from './hooks/useGitHubRateLimit'
 
 function App() {
+  const { rateLimit } = useGitHubRateLimit()
+
   return (
     <BrowserRouter>
+      {rateLimit && (
+        <RateLimit rateLimit={rateLimit} />
+      )}
+
       <Routes>
         <Route
           path="/"
