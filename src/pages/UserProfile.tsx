@@ -1,5 +1,9 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import {
+  Link,
+  useParams,
+} from 'react-router-dom'
+
 import UserCard from '../components/UserCard'
 import useGitHubUser from '../hooks/useGitHubUser'
 import NotFound from './NotFound'
@@ -30,6 +34,10 @@ function UserProfile() {
 
   return (
     <div>
+      <Link to="/">
+        ← Back to Search
+      </Link>
+
       <h1>User Profile</h1>
 
       <UserCard user={user} />
