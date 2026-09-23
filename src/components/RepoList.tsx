@@ -12,7 +12,9 @@ function RepoList({
 }: RepoListProps) {
   return (
     <div>
-      <h2>Repositories</h2>
+      <h2 className="repositories-title">
+        Repositories
+      </h2>
 
       {repos.length === 0 ? (
         <p>
@@ -20,13 +22,15 @@ function RepoList({
           matching your filter.
         </p>
       ) : (
-        repos.map((repo) => (
-          <RepoCard
-            key={repo.id}
-            repo={repo}
-            username={username}
-          />
-        ))
+        <div className="repo-list">
+          {repos.map((repo) => (
+            <RepoCard
+              key={repo.id}
+              repo={repo}
+              username={username}
+            />
+          ))}
+        </div>
       )}
     </div>
   )

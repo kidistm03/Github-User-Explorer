@@ -11,8 +11,8 @@ function RepoCard({
   username,
 }: RepoCardProps) {
   return (
-    <div>
-      <h3>
+    <div className="repo-card">
+      <h3 className="repo-name">
         <Link
           to={`/users/${username}/repos/${repo.name}`}
         >
@@ -20,30 +20,35 @@ function RepoCard({
         </Link>
       </h3>
 
-      <p>
-        {repo.description || 'No description available'}
+      <p className="repo-description">
+        {repo.description ||
+          'No description available'}
       </p>
 
-      <p>
-        Language: {repo.language || 'Not specified'}
-      </p>
+      <div className="repo-info">
+        <span>
+          Language:{' '}
+          {repo.language || 'Not specified'}
+        </span>
 
-      <p>
-        ⭐ Stars: {repo.stargazers_count}
-      </p>
+        <span>
+          ⭐ {repo.stargazers_count}
+        </span>
 
-      <p>
-        🍴 Forks: {repo.forks_count}
-      </p>
+        <span>
+          🍴 {repo.forks_count}
+        </span>
 
-      <p>
-        Updated:{' '}
-        {new Date(
-          repo.updated_at
-        ).toLocaleDateString()}
-      </p>
+        <span>
+          Updated:{' '}
+          {new Date(
+            repo.updated_at
+          ).toLocaleDateString()}
+        </span>
+      </div>
 
       <a
+        className="repo-link"
         href={repo.html_url}
         target="_blank"
         rel="noreferrer"
