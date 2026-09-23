@@ -9,22 +9,33 @@ function useGitHubUser() {
   const searchUser = async (username: string): Promise<void> => {
     setLoading(true)
     setError(null)
+    setUser(null)
 
     try {
       const response = await fetch(
         `https://api.github.com/users/${username}`
       )
 
-      if (!response.ok) {
+      if (response.status === 404) {
         throw new Error('User not found')
+      }
+
+      if (response.status === 403) {
+        throw new Error(
+          'GitHub API rate limit exceeded'
+        )
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          'Unable to load GitHub user'
+        )
       }
 
       const data: GitHubUser = await response.json()
 
       setUser(data)
     } catch (error) {
-      setUser(null)
-
       if (error instanceof Error) {
         setError(error.message)
       } else {
