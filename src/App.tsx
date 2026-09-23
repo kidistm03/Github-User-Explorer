@@ -1,45 +1,56 @@
-import {BrowserRouter,Routes,Route,} from 'react-router-dom'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom'
+
+import Navigation from './components/Navigation'
+import RateLimit from './components/RateLimit'
+
+import useGitHubRateLimit from './hooks/useGitHubRateLimit'
 
 import SearchPage from './pages/SearchPage'
 import UserProfile from './pages/UserProfile'
 import RepoDetail from './pages/RepoDetail'
 import NotFound from './pages/NotFound'
-import RateLimit from './components/RateLimit'
-import useGitHubRateLimit from './hooks/useGitHubRateLimit'
-import Navigation from './components/Navigation'
 
 function App() {
-  const { rateLimit } = useGitHubRateLimit()
+  const { rateLimit } =
+    useGitHubRateLimit()
 
   return (
     <BrowserRouter>
-      <Navigation />
+      <div className="app">
+        <Navigation />
 
-      {rateLimit && (
-        <RateLimit rateLimit={rateLimit} />
-      )}
+        {rateLimit && (
+          <RateLimit
+            rateLimit={rateLimit}
+          />
+        )}
 
-      <Routes>
-        <Route
-          path="/"
-          element={<SearchPage />}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={<SearchPage />}
+          />
 
-        <Route
-          path="/users/:username"
-          element={<UserProfile />}
-        />
+          <Route
+            path="/users/:username"
+            element={<UserProfile />}
+          />
 
-        <Route
-          path="/users/:username/repos/:repoName"
-          element={<RepoDetail />}
-        />
+          <Route
+            path="/users/:username/repos/:repoName"
+            element={<RepoDetail />}
+          />
 
-        <Route
-          path="*"
-          element={<NotFound />}
-        />
-      </Routes>
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   )
 }
