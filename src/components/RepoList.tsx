@@ -14,13 +14,20 @@ function RepoList({
     <div>
       <h2>Repositories</h2>
 
-      {repos.map((repo) => (
-        <RepoCard
-          key={repo.id}
-          repo={repo}
-          username={username}
-        />
-      ))}
+      {repos.length === 0 ? (
+        <p>
+          This user does not have any repositories
+          matching your filter.
+        </p>
+      ) : (
+        repos.map((repo) => (
+          <RepoCard
+            key={repo.id}
+            repo={repo}
+            username={username}
+          />
+        ))
+      )}
     </div>
   )
 }
