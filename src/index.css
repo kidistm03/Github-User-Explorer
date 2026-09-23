@@ -297,3 +297,45 @@ a {
 .readme code {
   font-family: Consolas, monospace;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 94%;
+    padding: 24px 0;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .user-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .user-details {
+    text-align: left;
+  }
+
+  .repo-list {
+    grid-template-columns: 1fr;
+  }
+
+  .navigation-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .readme {
+    padding: 20px;
+  }
+}
