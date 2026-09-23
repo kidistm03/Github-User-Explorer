@@ -7,7 +7,9 @@ interface SearchBarProps {
 function SearchBar({ onSearch }: SearchBarProps) {
   const [username, setUsername] = useState<string>('')
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement>
+  ): void => {
     event.preventDefault()
 
     if (username.trim() === '') {
@@ -18,17 +20,24 @@ function SearchBar({ onSearch }: SearchBarProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="search-form"
+      onSubmit={handleSubmit}
+    >
       <input
+        className="search-input"
         type="text"
         value={username}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setUsername(event.target.value)
-        }
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement>
+        ) => setUsername(event.target.value)}
         placeholder="Enter GitHub username"
       />
 
-      <button type="submit">
+      <button
+        className="search-button"
+        type="submit"
+      >
         Search
       </button>
     </form>
