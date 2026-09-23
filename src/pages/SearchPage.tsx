@@ -21,6 +21,7 @@ function SearchPage() {
     const {
         repos,
         loading: reposLoading,
+        error: reposError,
         searchRepos,
     } = useGitHubRepos()
 
@@ -99,7 +100,9 @@ function SearchPage() {
 
             {user && <UserCard user={user} />}
 
-            {reposLoading && <p>Loading repositories...</p>}
+            {reposLoading && (<p>Loading repositories...</p>)}
+
+            {reposError && (<p>{reposError}</p>)}
 
             {repos.length > 0 && (
                 <>
