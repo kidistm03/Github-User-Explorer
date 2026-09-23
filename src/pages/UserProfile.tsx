@@ -6,10 +6,12 @@ import {
 
 import UserCard from '../components/UserCard'
 import useGitHubUser from '../hooks/useGitHubUser'
+
 import NotFound from './NotFound'
 
 function UserProfile() {
-  const { username } = useParams<'username'>()
+  const { username } =
+    useParams<'username'>()
 
   const {
     user,
@@ -25,7 +27,11 @@ function UserProfile() {
   }, [username])
 
   if (loading) {
-    return <p>Loading user...</p>
+    return (
+      <main className="container">
+        <p>Loading user...</p>
+      </main>
+    )
   }
 
   if (error || !user) {
@@ -33,15 +39,20 @@ function UserProfile() {
   }
 
   return (
-    <div>
-      <Link to="/">
+    <main className="container">
+      <Link
+        className="back-link"
+        to="/"
+      >
         ← Back to Search
       </Link>
 
-      <h1>User Profile</h1>
+      <h1 className="page-title">
+        User Profile
+      </h1>
 
       <UserCard user={user} />
-    </div>
+    </main>
   )
 }
 
