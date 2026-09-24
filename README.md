@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# GitHub User Explorer
+A beginner-friendly React and TypeScript application that allows users to search for GitHub users and explore their profiles and repositories.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Features
 
-Currently, two official plugins are available:
+* Search for a GitHub username
+* Display GitHub user profile information
+* Display avatar, bio, location, company, followers, following, and public repositories
+* Browse a user's repositories
+* Sort repositories by:
+  * Stars
+  * Forks
+  * Recently updated
+  * Name
+* Filter repositories by programming language
+* View repository details
+* Render repository README files as Markdown
+* Save recent searches using localStorage
+* Display a user not found state
+* Display the GitHub API rate limit
+* Responsive layout for smaller screens
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## GitHub API
 
-## React Compiler
+This project uses the GitHub REST API: `https://api.github.com`
+The application uses public GitHub endpoints, so an API key is not required for basic searches.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## TypeScript
 
-## Expanding the Oxlint configuration
+The project uses TypeScript throughout the application.
+API responses are represented using interfaces, including:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+* `GitHubUser`
+* `GitHubRepository`
+* `GitHubReadme`
+* `GitHubRateLimit`
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+Component props and React event handlers are also typed.
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## How It Works
+
+1. The user enters a GitHub username.
+2. The application sends a request to the GitHub API.
+3. The user's profile is displayed.
+4. The user's repositories are loaded.
+5. Repositories can be sorted and filtered.
+6. Selecting a repository opens its detail page.
+7. The repository README is fetched and rendered as Markdown.
+8. Previous searches are saved in the browser's localStorage.
+
