@@ -28,29 +28,29 @@ function UserCard({ user }: UserCardProps) {
 
         <div className="user-details">
           <p>
-            📍 Location:{' '}
+            Location:{' '}
             {user.location || 'No location available'}
           </p>
 
           <p>
-            🏢 Company:{' '}
+            Company:{' '}
             {user.company || 'No company available'}
           </p>
 
           <p>
-            👥 Followers: {user.followers}
+            Followers: {user.followers}
           </p>
 
           <p>
-            👤 Following: {user.following}
+            Following: {user.following}
           </p>
 
           <p>
-            📦 Public repositories: {user.public_repos}
+            Public repositories: {user.public_repos}
           </p>
 
           <p>
-            📅 Joined:{' '}
+            Joined:{' '}
             {new Date(
               user.created_at
             ).toLocaleDateString()}
